@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class CreateTest extends JPanel {
+  private Test test;
   private JFrame mainFrame;
   private JFrame createTestFrame;
   private JTextArea question;
@@ -13,11 +14,12 @@ public class CreateTest extends JPanel {
   private JButton doneButton;
 
   public CreateTest(Test test, JFrame mainFrame, JFrame createTestFrame) {
+    this.test = test;
     this.mainFrame = mainFrame;
     this.createTestFrame = createTestFrame;
 
     setPreferredSize(new Dimension(400, 200));
-    setLayout(new BorderLayout(50, 50));
+    setLayout(new BorderLayout(30, 30));
 
     add(setupLabels(), BorderLayout.WEST);
     add(setupFields(), BorderLayout.CENTER);
@@ -26,18 +28,23 @@ public class CreateTest extends JPanel {
 
   public JPanel setupLabels() {
     JPanel labels = new JPanel(new GridLayout(2, 1));
-    labels.add(new JLabel("Enter Question: "));
-    labels.add(new JLabel("Enter Answer: "));
+    labels.add(new JLabel("\t\tEnter Question: "));
+    labels.add(new JLabel("\t\tEnter Answer: "));
     return labels;
   }
 
   public JPanel setupFields() {
-    question = new JTextArea();
-    answer = new JTextArea();
+    question = new JTextArea(10, 10);
+    question.setLineWrap(true);
+    question.setWrapStyleWord(true);
+
+    answer = new JTextArea(10, 10);
+    answer.setLineWrap(true);
+    answer.setWrapStyleWord(true);
 
     JPanel fields = new JPanel(new GridLayout(2, 1));
-    fields.add(question);
-    fields.add(answer);
+    fields.add(new JScrollPane(question));
+    fields.add(new JScrollPane(answer));
     return fields;
   }
 
@@ -45,8 +52,8 @@ public class CreateTest extends JPanel {
     saveQuestionButton = new JButton("Save Question");
     doneButton = new JButton("Done");
 
-    SaveQuestionListener listener = new SaveQuestionListener(test, question, answer);
-    saveQuestionButton.addActionListener(listener);
+    saveQuestionButton.addActionListener(
+      new SaveQuestionListener(test, question.getText(), answer.getText()));
 
     doneButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {

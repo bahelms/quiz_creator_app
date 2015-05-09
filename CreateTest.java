@@ -53,11 +53,12 @@ public class CreateTest extends JPanel {
     doneButton = new JButton("Done");
 
     saveQuestionButton.addActionListener(
-      new SaveQuestionListener(test, question.getText(), answer.getText()));
+      new SaveQuestionListener(test, question, answer));
 
     doneButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         createTestFrame.dispose();
+        JOptionPane.showMessageDialog(null, test.name() + " created!");
         mainFrame.setVisible(true);
       }
     });

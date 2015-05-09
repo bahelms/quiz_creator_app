@@ -11,6 +11,8 @@ public class Test {
     index = 0;
   }
 
+  public String name() { return name; }
+
   public void createQuestion(String question, String answer) {
     questions[index] = question;
     answers[index] = answer;

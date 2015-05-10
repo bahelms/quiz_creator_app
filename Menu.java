@@ -12,7 +12,10 @@ public class Menu extends JPanel {
   public Menu(JFrame mainFrame) {
     createTest = new JButton("Create Test");
     createTest.addActionListener(new CreateTestListener(mainFrame));
+
     takeTest = new JButton("Take Test");
+    takeTest.addActionListener(new TakeTestListener());
+
     scoreTest = new JButton("Score Test");
 
     JPanel buttons = new JPanel(new GridLayout(1, 3));

@@ -17,6 +17,7 @@ public class SaveQuestionListener implements ActionListener {
       JOptionPane.showMessageDialog(null, 
         "Blank questions or answers are not allowed.");
     } else {
+      test.createQuestion(question.getText(), answer.getText());
       question.setText("");
       answer.setText("");
     }

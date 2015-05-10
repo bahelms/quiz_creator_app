@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class Test {
   private String name;
   private String[] questions;
@@ -19,16 +21,16 @@ public class Test {
     index++;
   }
 
-  public void display() {
-    System.out.println("\nChapter 7 & 8 General Assessment\n");
-
-    for (int i = 0; i < index; i++) {
-      System.out.println("GA Question #" + (i+1) + "\t" + "Points: ");
-      System.out.println(questions[i]);
-      System.out.println("CORRECT ANSWER: " + answers[i]);
-      System.out.println();
+  public void saveTestToFile() {
+    try {
+      PrintWriter writer = new PrintWriter("Test.txt");
+      for (int i = 0; i < index; i++) {
+        writer.println("Q" + (i+1) + ":" + questions[i]);
+        writer.println("A" + (i+1) + ":" + answers[i]);
+      }
+      writer.close();
     }
+    catch (FileNotFoundException e) {}
   }
 }
-
 

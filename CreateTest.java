@@ -57,6 +57,7 @@ public class CreateTest extends JPanel {
 
     doneButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        test.saveTestToFile();
         createTestFrame.dispose();
         JOptionPane.showMessageDialog(null, test.name() + " created!");
         mainFrame.setVisible(true);

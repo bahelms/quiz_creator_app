@@ -17,6 +17,7 @@ public class Menu extends JPanel {
     takeTest.addActionListener(new TakeTestListener());
 
     scoreTest = new JButton("Score Test");
+    scoreTest.addActionListener(new ScoreTestListener());
 
     JPanel buttons = new JPanel(new GridLayout(1, 3));
     buttons.add(createTest);

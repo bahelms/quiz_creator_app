@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class Test {
   public final static String FILENAME = "Test.txt";
@@ -29,7 +29,10 @@ public class Test {
   }
 
   public String name() { return name; }
-  public String[] questions() { return questions; }
+
+  public String[] questions() { 
+    return Arrays.copyOfRange(questions, 0, index);
+  }
 
   public void createQuestion(String question, String answer) {
     questions[index] = question;
@@ -49,6 +52,28 @@ public class Test {
       writer.close();
     }
     catch (FileNotFoundException e) {}
+  }
+
+  public String displayResultsFor(String[] responses) {
+    String results = "Test: " + name + "\n";
+    int totalScore = 0;
+
+    for (int i = 0; i < questions().length; i++) {
+      int points = 0;
+
+      if (answers[i].equals(responses[i])) {
+        totalScore += 2;
+        points = 2;
+      }
+
+      results = results.concat("\nQ# " + (i+1) + "\t" + "Points: " + points + "\n");
+      results = results.concat("Question: " + questions[i] + "\n");
+      results = results.concat("Your Answer: " + responses[i] + "\n");
+      results = results.concat("Correct Answer: " + answers[i] + "\n");
+    }
+
+    results = results.concat("\nTotal Score: " + totalScore);
+    return results;
   }
 }
 
